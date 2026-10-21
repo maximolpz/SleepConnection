@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090d1b">
+  <meta name="description" content="Un espacio sencillo para meditar, respirar y descansar.">
+  <title>Sueña Calma · Meditación y sueño</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Sueña Calma, inicio"><span class="brand-mark">☾</span><span>SUEÑA <b>CALMA</b></span></a>
+    <button id="installBtn" class="quiet-button hidden" type="button">Instalar app</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">TU PEQUEÑO REFUGIO NOCTURNO</p>
+      <h1>Bajá el ritmo.<br><em>Soltá el día.</em></h1>
+      <p class="hero-copy">Un momento para respirar, aquietar la mente y dejar que el descanso llegue a su tiempo.</p>
+      <a href="#biblioteca" class="primary-link">Encontrar mi momento <span>↓</span></a>
+    </section>
+
+    <section class="now-playing panel" aria-label="Reproductor">
+      <div class="playing-art" aria-hidden="true"><span>☾</span><i></i><i></i><i></i></div>
+      <div class="playing-info">
+        <p class="eyebrow">AHORA</p>
+        <h2 id="nowTitle">Un momento de calma</h2>
+        <p id="nowSubtitle" class="muted">Elegí una meditación o un sonido</p>
+        <div class="progress-row"><span id="elapsed">00:00</span><div class="progress-track"><div id="progress" class="progress-fill"></div></div><span id="remaining">∞</span></div>
+      </div>
+      <button id="playPause" class="round-play" type="button" aria-label="Reproducir o pausar">▶</button>
+    </section>
+
+    <section class="tools panel">
+      <div class="section-heading compact">
+        <div><p class="eyebrow">A TU RITMO</p><h2>Prepará el descanso</h2></div>
+      </div>
+      <div class="tool-grid">
+        <label class="field"><span>Temporizador</span>
+          <select id="timerSelect">
+            <option value="0">Sin temporizador</option>
+            <option value="5">5 minutos</option>
+            <option value="10">10 minutos</option>
+            <option value="15">15 minutos</option>
+            <option value="20">20 minutos</option>
+            <option value="30">30 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="60">60 minutos</option>
+          </select>
+        </label>
+        <label class="field"><span>Apagado gradual</span>
+          <select id="fadeSelect">
+            <option value="0">Desactivado</option>
+            <option value="15">Últimos 15 segundos</option>
+            <option value="30" selected>Últimos 30 segundos</option>
+            <option value="60">Último minuto</option>
+          </select>
+        </label>
+      </div>
+      <p id="timerStatus" class="small-status" aria-live="polite">El temporizador está desactivado.</p>
+    </section>
+
+    <section id="biblioteca" class="library">
+      <div class="section-heading">
+        <div><p class="eyebrow">LA BIBLIOTECA</p><h2>¿Qué necesitás esta noche?</h2></div>
+        <button id="favoritesToggle" class="outline-button" type="button" aria-pressed="false">♡ Favoritos</button>
+      </div>
+      <div id="filters" class="filters" role="group" aria-label="Filtrar contenido">
+        <button class="filter active" data-filter="todo" type="button">Todo</button>
+        <button class="filter" data-filter="meditacion" type="button">Meditaciones</button>
+        <button class="filter" data-filter="relato" type="button">Relatos</button>
+        <button class="filter" data-filter="respiracion" type="button">Respiración</button>
+        <button class="filter" data-filter="sonido" type="button">Naturaleza</button>
+        <button class="filter" data-filter="musica" type="button">Música</button>
+      </div>
+      <div id="contentGrid" class="content-grid"></div>
+      <div class="upload-panel panel">
+        <div class="upload-icon">＋</div>
+        <div class="upload-copy"><h3>Tu propio audio</h3><p>Reproducí un MP3 guardado en tu dispositivo. No se sube a ningún servidor.</p></div>
+        <label class="upload-button">Elegir archivo MP3<input id="audioUpload" type="file" accept="audio/*"></label>
+      </div>
+      <details class="add-audio panel">
+        <summary>¿Querés agregar tus propios MP3 al sitio?</summary>
+        <p>Creá una carpeta <code>audio</code> en el repositorio y subí allí tus archivos. Después agregá cada audio al arreglo <code>customTracks</code> de <code>app.js</code>, indicando su ruta, título y categoría. El MP3 quedará disponible sin conexión si está incluido en la versión publicada y el navegador lo almacenó en caché.</p>
+        <pre><code>{ title: "Lluvia suave", category: "sonido", type: "audio", src: "./audio/lluvia.mp3" }</code></pre>
+      </details>
+    </section>
+
+    <section class="gentle-note">
+      <span aria-hidden="true">✦</span>
+      <p>No hace falta hacerlo perfecto. Si tu mente se distrae, podés volver suavemente a la respiración.</p>
+    </section>
+  </main>
+
+  <footer><span>☾ SUEÑA CALMA</span><p>Un refugio pequeño, a tu propio ritmo.</p><p class="footer-small">Los audios generados por voz dependen de las voces instaladas en tu navegador o dispositivo.</p></footer>
+  <audio id="audioPlayer" preload="metadata"></audio>
+  <script src="./app.js" defer></script>
+</body>
+</html>
